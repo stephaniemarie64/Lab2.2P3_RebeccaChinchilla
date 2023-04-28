@@ -24,13 +24,14 @@ int main() {
         case 1: {
             cout << "Ordenamiento y omision en arreglos" << endl << endl;
             char arr[10];
-            C_arreglo(arr);
+            C_arreglo(arr);//llama y crea el arreglo
             cout << "Arreglo original: ";
             for (int i = 0; i < 10; i++) {
                 cout << arr[i] << " ";
             }
             cout << endl;
-            Skip(arr);
+            Skip(arr);//hace skip a todo y cumple on lo pedido 
+            //osea orden alfabetico y sin copias baratas
             cout << "Nuevo arreglo con caracteres ordenados y sin repetir: ";
             for (int i = 0; i < 10; i++) {
                 if (arr[i] != '\0') {
@@ -45,9 +46,9 @@ int main() {
             int n;
             cout << "Ingrese el número a sacar el factorial: ";
             cin >> n;
-            int fact = Factorial(n);
+            int fact = Factorial(n);//hace el factorial y lo llama
             cout << "Factorial de " << n << ": " << fact << endl;
-            CrearTriangulo(fact);
+            CrearTriangulo(fact);// llama al triangulo 
             cout << endl;
             break;
         }//empieza case3
@@ -63,7 +64,7 @@ int main() {
     } while (opcion != 3);
 
     return 0;
-}
+}//termina el main
 //crea el arreglo
 void C_arreglo(char arr[]) {
     srand(time(NULL));
