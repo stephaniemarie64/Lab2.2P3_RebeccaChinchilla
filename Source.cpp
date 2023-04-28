@@ -1,95 +1,106 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
-// lo que hace el factorial
-int Factorial(int n) {
-    if (n == 0 || n == 1) {
-        return 1;
-    }
-    else {
-        return n * Factorial(n - 1);
-    }
-}
-// lo que hace el triangulo
-void CrearTriangulo(int n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j <= i; j++) {
-            cout << "* ";
-        }
-        cout << endl;
-    }
-}
+//todas las funciones
+void C_arreglo(char arr[]);
+void Skip(char arr[]);
+int Factorial(int n);
+void CrearTriangulo(int n);
 
 int main() {
     int opcion;
-    // lo que hace el menu
-    do {
-        cout << "---- MENU ----" << endl;
-        cout << "1. Ordenamiento y omisión en arreglos" << endl;
-        cout << "2. Factoriales y figuras." << endl;
+    do {//menu
+        cout << "----MENU----" << endl;
+        cout << "1. Ordenamiento y omision en arreglos" << endl;
+        cout << "2. Factoriales y figuras" << endl;
         cout << "3. Salir" << endl;
-        cout << "Ingrese su opcion: ";
+        cout << "Elija una opcion: ";
         cin >> opcion;
-
-        switch (opcion) {// case 1
-        case 1:
-            cout << "Ordenamiento y omisión en arreglos" << endl;
-
-            char caracteres[10];
-            char caracteresOrdenados[26] = { 0 };
-            int indice = 0;
-
-            srand(time(NULL));
-            for (int i = 0; i < 10; i++) {
-                caracteres[i] = rand() % 26 + 97;
-            }
-
+        cout << endl;
+        switch (opcion) {//case1
+        case 1: {
+            cout << "Ordenamiento y omision en arreglos" << endl<<endl;
+            char arr[10];
+            C_arreglo(arr);
             cout << "Arreglo original: ";
             for (int i = 0; i < 10; i++) {
-                cout << caracteres[i] << " ";
+                cout << arr[i] << " ";
             }
-            cout << endl;
-
+            cout << endl<<endl;
+            Skip(arr);
+            cout << "Arreglo ordenado y omitiendo letras repetidas: ";
             for (int i = 0; i < 10; i++) {
-                caracteresOrdenados[caracteres[i] - 97] = caracteres[i];
-            }
-
-            cout << "Arreglo ordenado: ";
-            for (int i = 0; i < 26; i++) {
-                if (caracteresOrdenados[i] != 0) {
-                    cout << caracteresOrdenados[i] << " ";
-                    indice++;
+                if (arr[i] != '\0') {
+                    cout << arr[i] << " ";
                 }
             }
-            cout << endl;
+            cout << endl<<endl;
             break;
-            // empieza case 2
-        case 2:
+        }//empieza case2
+        case 2: {
             cout << "Factoriales y figuras." << endl;
             int n;
-            do {
-                cout << "Ingrese un entero positivo: ";
-                cin >> n;
-            } while (n < 0);
-            //se llama el factorial
-            int factorial = Factorial(n);
-            cout << "Factorial de " << n << " = " << factorial << endl;
-            //se llama el triangulo
-            CrearTriangulo(factorial);
+            cout << "Ingrese un entero positivo: ";
+            cin >> n;
+            int fact = Factorial(n);
+            cout << "Factorial de " << n << ": " << fact << endl;
+            CrearTriangulo(fact);
             break;
-        // empieza case 3
-        case 3:
-            cout << "Saliendo del programa. Muchas gracias :)" << endl;
+        }//empieza case3
+        case 3: {
+            cout << "Saliendo del programa...vuelva pronto :)" << endl;
             break;
-
-        default:
-            cout << "Opcion invalida. Intente otra vez :(" << endl;
         }
-
-        cout << endl;
+        default: {
+            cout << "Opcion invalida, intente de nuevo :(." << endl;
+            break;
+        }
+        }
     } while (opcion != 3);
 
     return 0;
+}
+//crea el arreglo
+void C_arreglo(char arr[]) {
+    srand(time(NULL));
+    for (int i = 0; i < 10; i++) {
+        arr[i] = 'a' + rand() % 26;
+    }
+}
+//ordena y quita lo repetido
+void Skip(char arr[]) {
+    for (int i = 0; i < 10; i++) {
+        if (arr[i] != '\0') {
+            for (int j = i + 1; j < 10; j++) {
+                if (arr[j] != '\0') {
+                    if (arr[i] > arr[j]) {
+                        swap(arr[i], arr[j]);
+                    }
+                    else if (arr[i] == arr[j]) {
+                        arr[j] = '\0';
+                    }
+                }
+            }
+        }
+    }
+}
+//lo factorial
+int Factorial(int n) {
+    if (n == 0) {
+        return 1;
+    }else {
+        return n * Factorial(n - 1);
+    }
+}
+//crea el triangulo y lo imprime
+void CrearTriangulo(int n) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
 }
