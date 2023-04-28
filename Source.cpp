@@ -22,32 +22,33 @@ int main() {
         cout << endl;
         switch (opcion) {//case1
         case 1: {
-            cout << "Ordenamiento y omision en arreglos" << endl<<endl;
+            cout << "Ordenamiento y omision en arreglos" << endl << endl;
             char arr[10];
             C_arreglo(arr);
             cout << "Arreglo original: ";
             for (int i = 0; i < 10; i++) {
                 cout << arr[i] << " ";
             }
-            cout << endl<<endl;
+            cout << endl;
             Skip(arr);
-            cout << "Arreglo ordenado y omitiendo letras repetidas: ";
+            cout << "Nuevo arreglo con caracteres ordenados y sin repetir: ";
             for (int i = 0; i < 10; i++) {
                 if (arr[i] != '\0') {
                     cout << arr[i] << " ";
                 }
             }
-            cout << endl<<endl;
+            cout << endl << endl;
             break;
         }//empieza case2
         case 2: {
-            cout << "Factoriales y figuras." << endl;
+            cout << "Factoriales y figuras." << endl << endl;
             int n;
-            cout << "Ingrese un entero positivo: ";
+            cout << "Ingrese el número a sacar el factorial: ";
             cin >> n;
             int fact = Factorial(n);
             cout << "Factorial de " << n << ": " << fact << endl;
             CrearTriangulo(fact);
+            cout << endl;
             break;
         }//empieza case3
         case 3: {
@@ -78,8 +79,7 @@ void Skip(char arr[]) {
                 if (arr[j] != '\0') {
                     if (arr[i] > arr[j]) {
                         swap(arr[i], arr[j]);
-                    }
-                    else if (arr[i] == arr[j]) {
+                    }else if (arr[i] == arr[j]) {
                         arr[j] = '\0';
                     }
                 }
